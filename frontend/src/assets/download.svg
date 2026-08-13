@@ -1,0 +1,142 @@
+// =========================================
+// FILE VALIDATION UTILITIES
+// =========================================
+
+const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
+
+
+// -----------------------------------------
+// Check file size
+// -----------------------------------------
+
+export function isFileSizeValid(file) {
+  if (!file) {
+    return false;
+  }
+
+  return file.size <= MAX_FILE_SIZE;
+}
+
+
+// -----------------------------------------
+// Get readable file size
+// -----------------------------------------
+
+export function formatFileSize(bytes) {
+  if (!Number.isFinite(bytes) || bytes < 0) {
+    return "0 Bytes";
+  }
+
+  if (bytes === 0) {
+    return "0 Bytes";
+  }
+
+  const units = [
+    "Bytes",
+    "KB",
+    "MB",
+    "GB",
+    "TB",
+  ];
+
+  const index = Math.floor(
+    Math.log(bytes) / Math.log(1024)
+  );
+
+  const safeIndex = Math.min(
+    index,
+    units.length - 1
+  );
+
+  const size =
+    bytes / Math.pow(1024, safeIndex);
+
+  return `${size.toFixed(2)} ${units[safeIndex]}`;
+}
+
+
+// -----------------------------------------
+// Validate filename
+// -----------------------------------------
+
+export function isValidFileName(fileName) {
+  if (!fileName || typeof fileName !== "string") {
+    return false;
+  }
+
+  const trimmedName = fileName.trim();
+
+  if (trimmedName.length === 0) {
+    return false;
+  }
+
+  if (trimmedName.length > 255) {
+    return false;
+  }
+
+  // Prevent path traversal characters.
+  const invalidCharacters = /[<>:"/\\|?*\x00-\x1F]/;
+
+  return !invalidCharacters.test(trimmedName);
+}
+
+
+// -----------------------------------------
+// Get file extension
+// -----------------------------------------
+
+export function getFileExtension(fileName) {
+  if (!fileName || typeof fileName !== "string") {
+    return "";
+  }
+
+  const lastDot = fileName.lastIndexOf(".");
+
+  if (lastDot === -1) {
+    return "";
+  }
+
+  return fileName
+    .slice(lastDot + 1)
+    .toLowerCase();
+}
+
+
+// -----------------------------------------
+// Validate complete file
+// -----------------------------------------
+
+export function validateFile(file) {
+  if (!file) {
+    return {
+      valid: false,
+      error: "Please select a file.",
+    };
+  }
+
+  if (!(file instanceof File)) {
+    return {
+      valid: false,
+      error: "Invalid file.",
+    };
+  }
+
+  if (!isValidFileName(file.name)) {
+    return {
+      valid: false,
+      error: "The file name is invalid.",
+    };
+  }
+
+  if (!isFileSizeValid(file)) {
+    return {
+      valid: false,
+      error: "File size cannot exceed 100 MB.",
+    };
+  }
+
+  return {
+    valid: true,
+    error: null,
+  };
+}
