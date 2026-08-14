@@ -1,98 +1,252 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./Chat.css";
 
+import FileUpload from "../components/files/FileUpload";
+
 function Chat() {
+  const navigate = useNavigate();
+
+  const [conversationStarted, setConversationStarted] =
+    useState(false);
+
   return (
     <div className="chat-app">
 
-      {/* =========================
+      {/* =========================================
           SIDEBAR
-      ========================= */}
+      ========================================= */}
 
       <aside className="sidebar">
 
-        {/* BRAND */}
+        {/* =====================================
+            BRAND
+        ===================================== */}
 
         <div className="sidebar-brand">
+
           <div className="brand-mark">
             S
           </div>
 
-          <div>
-            <h2>SecureX</h2>
-            <span>Private communication</span>
+          <div className="brand-text">
+
+            <h2>
+              SecureX
+            </h2>
+
+            <span>
+              Zero-knowledge storage
+            </span>
+
           </div>
+
         </div>
 
 
-        {/* SEARCH */}
+        {/* =====================================
+            SEARCH
+        ===================================== */}
 
         <div className="search-wrapper">
-          <span className="search-icon">⌕</span>
+
+          <span className="search-icon">
+            ⌕
+          </span>
 
           <input
             type="text"
-            placeholder="Search"
+            placeholder="Search files"
           />
 
           <span className="search-shortcut">
             /
           </span>
+
         </div>
 
 
-        {/* SECTION HEADER */}
+        {/* =====================================
+            STORAGE TITLE
+        ===================================== */}
 
         <div className="conversation-header">
 
-          <span>Conversations</span>
+          <span>
+            Storage
+          </span>
 
-          <button className="add-button">
-            +
+        </div>
+
+
+        {/* =====================================
+            NAVIGATION
+        ===================================== */}
+
+        <div className="conversation-list">
+
+          {/* Dashboard */}
+
+          <button
+            className="sidebar-item active"
+            type="button"
+            onClick={() => navigate("/chat")}
+          >
+
+            <span className="item-icon">
+              ⌂
+            </span>
+
+            <span>
+              Dashboard
+            </span>
+
+          </button>
+
+
+          {/* My Files */}
+
+          <button
+            className="sidebar-item"
+            type="button"
+            onClick={() => navigate("/files")}
+          >
+
+            <span className="item-icon">
+              ▣
+            </span>
+
+            <span>
+              My Files
+            </span>
+
+          </button>
+
+
+          {/* Received Files */}
+
+          <button
+            className="sidebar-item"
+            type="button"
+            onClick={() => navigate("/received")}
+          >
+
+            <span className="item-icon">
+              ↗
+            </span>
+
+            <span>
+              Received Files
+            </span>
+
+          </button>
+
+
+          {/* Activity */}
+
+          <button
+            className="sidebar-item"
+            type="button"
+            onClick={() => {
+              alert(
+                "Activity will be connected later."
+              );
+            }}
+          >
+
+            <span className="item-icon">
+              ◷
+            </span>
+
+            <span>
+              Activity
+            </span>
+
           </button>
 
         </div>
 
 
-        {/* EMPTY CONVERSATIONS */}
+        {/* =====================================
+            START CONVERSATION
+        ===================================== */}
 
-        <div className="conversation-empty">
+        <button
+          className="new-conversation"
+          type="button"
+          onClick={() =>
+            setConversationStarted(true)
+          }
+        >
 
-          <div className="conversation-empty-icon">
+          <span className="new-conversation-icon">
             +
-          </div>
+          </span>
 
-          <h3>No conversations</h3>
+          <span>
+            Start conversation
+          </span>
 
-          <p>
-            Start a secure conversation with
-            someone you know.
-          </p>
-
-        </div>
-
-
-        {/* NEW CONVERSATION */}
-
-        <button className="new-conversation">
-          <span>+</span>
-          New conversation
         </button>
 
 
-        {/* SIDEBAR BOTTOM */}
+        {/* =====================================
+            SIDEBAR BOTTOM
+        ===================================== */}
 
         <div className="sidebar-bottom">
 
-          <button className="sidebar-item">
-            <span className="item-icon">⚙</span>
-            Settings
+
+          {/* Settings */}
+
+          <button
+            className="sidebar-item"
+            type="button"
+            onClick={() => {
+              alert(
+                "Settings will be connected later."
+              );
+            }}
+          >
+
+            <span className="item-icon">
+              ⚙
+            </span>
+
+            <span>
+              Settings
+            </span>
+
           </button>
 
-          <button className="sidebar-item">
-            <span className="item-icon">?</span>
-            Help & support
+
+          {/* Help */}
+
+          <button
+            className="sidebar-item"
+            type="button"
+            onClick={() => {
+              alert(
+                "Help & support will be connected later."
+              );
+            }}
+          >
+
+            <span className="item-icon">
+              ?
+            </span>
+
+            <span>
+              Help & support
+            </span>
+
           </button>
 
+
+          {/* =================================
+              ACCOUNT
+          ================================= */}
 
           <div className="account">
 
@@ -100,12 +254,29 @@ function Chat() {
               U
             </div>
 
+
             <div className="account-info">
-              <strong>Your account</strong>
-              <span>SecureX user</span>
+
+              <strong>
+                Your account
+              </strong>
+
+              <span>
+                SecureX user
+              </span>
+
             </div>
 
-            <button className="account-menu">
+
+            <button
+              className="account-menu"
+              type="button"
+              onClick={() => {
+                alert(
+                  "Account menu will be connected later."
+                );
+              }}
+            >
               ···
             </button>
 
@@ -116,13 +287,16 @@ function Chat() {
       </aside>
 
 
-      {/* =========================
-          MAIN CHAT
-      ========================= */}
+      {/* =========================================
+          MAIN AREA
+      ========================================= */}
 
       <main className="chat-main">
 
-        {/* HEADER */}
+
+        {/* =====================================
+            HEADER
+        ===================================== */}
 
         <header className="chat-header">
 
@@ -132,16 +306,23 @@ function Chat() {
               S
             </div>
 
-            <div>
-              <h3>SecureX</h3>
+
+            <div className="header-text">
+
+              <h3>
+                SecureX
+              </h3>
 
               <span>
-                Your private conversations
+                Private & secure
               </span>
+
             </div>
 
           </div>
 
+
+          {/* Protection status */}
 
           <div className="header-security">
 
@@ -156,51 +337,144 @@ function Chat() {
         </header>
 
 
-        {/* WELCOME */}
+        {/* =====================================
+            MAIN CONTENT
+        ===================================== */}
 
         <section className="welcome">
 
           <div className="welcome-inner">
 
+
+            {/* =================================
+                SECUREX LOGO
+            ================================= */}
+
             <div className="welcome-mark">
               S
             </div>
 
+
+            {/* =================================
+                SECURITY BADGE
+            ================================= */}
+
             <div className="welcome-badge">
+
               <span className="badge-dot"></span>
-              Private by design
-            </div>
-
-            <h1>
-              Your conversations,
-              <br />
-              kept private.
-            </h1>
-
-            <p>
-              Send messages and files securely.
-              <br />
-              Your data is encrypted before it leaves your device.
-            </p>
-
-
-            <button className="start-button">
-              <span>+</span>
-              Start a conversation
-            </button>
-
-
-            <div className="encryption-note">
-
-              <span className="lock-icon">
-                ◆
-              </span>
 
               <span>
-                End-to-end encrypted
+                Zero-knowledge protected
               </span>
 
             </div>
+
+
+            {/* =================================
+                BEFORE CONVERSATION
+            ================================= */}
+
+            {!conversationStarted && (
+
+              <>
+
+                <h1>
+                  Start a conversation
+                </h1>
+
+
+                <p>
+                  Communicate privately and securely.
+                  <br />
+                  Your files remain protected
+                  throughout the process.
+                </p>
+
+
+                <button
+                  className="start-button"
+                  type="button"
+                  onClick={() =>
+                    setConversationStarted(true)
+                  }
+                >
+
+                  Start conversation
+
+                </button>
+
+              </>
+
+            )}
+
+
+            {/* =================================
+                AFTER CONVERSATION
+            ================================= */}
+
+            {conversationStarted && (
+
+              <>
+
+                <h1>
+                  Upload a file
+                </h1>
+
+
+                <p>
+                  Select a file to securely share.
+                  <br />
+                  Your file will be scanned before
+                  encryption.
+                </p>
+
+
+                {/* =============================
+                    FILE UPLOAD
+                ============================= */}
+
+                <div className="upload-section">
+
+                  <FileUpload />
+
+                </div>
+
+
+                {/* =============================
+                    SECURITY FLOW
+                ============================= */}
+
+                <div className="encryption-note">
+
+                  <span className="lock-icon">
+                    ◆
+                  </span>
+
+                  <span>
+                    YARA scan
+                  </span>
+
+                  <span className="flow-arrow">
+                    →
+                  </span>
+
+                  <span>
+                    Encryption
+                  </span>
+
+                  <span className="flow-arrow">
+                    →
+                  </span>
+
+                  <span>
+                    Secure storage
+                  </span>
+
+                </div>
+
+              </>
+
+            )}
 
           </div>
 

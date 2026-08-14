@@ -1,8 +1,14 @@
 // =========================================
-// FILE VALIDATION UTILITIES
+// SECUREX FILE UTILITIES
 // =========================================
 
-const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
+
+// -----------------------------------------
+// Maximum allowed file size
+// -----------------------------------------
+// 100 MB
+
+const MAX_FILE_SIZE = 100 * 1024 * 1024;
 
 
 // -----------------------------------------
@@ -19,7 +25,7 @@ export function isFileSizeValid(file) {
 
 
 // -----------------------------------------
-// Get readable file size
+// Format file size
 // -----------------------------------------
 
 export function formatFileSize(bytes) {
@@ -56,7 +62,7 @@ export function formatFileSize(bytes) {
 
 
 // -----------------------------------------
-// Validate filename
+// Validate file name
 // -----------------------------------------
 
 export function isValidFileName(fileName) {
@@ -70,12 +76,15 @@ export function isValidFileName(fileName) {
     return false;
   }
 
+  // Maximum filename length
   if (trimmedName.length > 255) {
     return false;
   }
 
-  // Prevent path traversal characters.
-  const invalidCharacters = /[<>:"/\\|?*\x00-\x1F]/;
+  // Characters that should not appear
+  // in a filename/path
+  const invalidCharacters =
+    /[<>:"/\\|?*\x00-\x1F]/;
 
   return !invalidCharacters.test(trimmedName);
 }
@@ -107,6 +116,8 @@ export function getFileExtension(fileName) {
 // -----------------------------------------
 
 export function validateFile(file) {
+
+  // No file
   if (!file) {
     return {
       valid: false,
@@ -114,6 +125,8 @@ export function validateFile(file) {
     };
   }
 
+
+  // Make sure it is actually a File object
   if (!(file instanceof File)) {
     return {
       valid: false,
@@ -121,6 +134,8 @@ export function validateFile(file) {
     };
   }
 
+
+  // Validate filename
   if (!isValidFileName(file.name)) {
     return {
       valid: false,
@@ -128,6 +143,8 @@ export function validateFile(file) {
     };
   }
 
+
+  // Validate size
   if (!isFileSizeValid(file)) {
     return {
       valid: false,
@@ -135,6 +152,8 @@ export function validateFile(file) {
     };
   }
 
+
+  // Everything is valid
   return {
     valid: true,
     error: null,

@@ -1,0 +1,233 @@
+.received-files-page {
+  width: 100%;
+  min-height: 100%;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.received-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.received-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.received-header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.received-header p {
+  margin: 6px 0 0;
+  color: #777;
+  font-size: 14px;
+}
+
+.back-button {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.back-button:hover {
+  background: #f5f5f5;
+}
+
+.received-count {
+  padding: 8px 14px;
+  border: 1px solid #e5e5e5;
+  border-radius: 20px;
+  color: #666;
+  font-size: 13px;
+}
+
+
+/* =========================================
+   SECURITY MESSAGE
+========================================= */
+
+.receiver-security {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 700px;
+  margin-bottom: 22px;
+  padding: 14px 16px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+.receiver-security-icon {
+  font-size: 18px;
+}
+
+.receiver-security strong {
+  font-size: 13px;
+}
+
+.receiver-security p {
+  margin: 3px 0 0;
+  color: #777;
+  font-size: 12px;
+}
+
+
+/* =========================================
+   FILE LIST
+========================================= */
+
+.received-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.received-file-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  background: white;
+}
+
+.received-file-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #f3f3f3;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.received-file-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.received-file-info strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.received-file-info span {
+  color: #777;
+  font-size: 12px;
+}
+
+.received-file-info small {
+  color: #999;
+  font-size: 11px;
+}
+
+.received-file-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #555;
+  font-size: 12px;
+}
+
+.received-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4c9b67;
+}
+
+.decrypt-button {
+  padding: 9px 13px;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  background: white;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.decrypt-button:hover {
+  background: #f5f5f5;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.received-empty {
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.received-empty-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #f4f4f4;
+  font-size: 25px;
+}
+
+.received-empty h2 {
+  margin: 18px 0 6px;
+}
+
+.received-empty p {
+  margin: 0;
+  color: #888;
+  font-size: 13px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .received-files-page {
+    padding: 24px;
+  }
+
+  .received-file-card {
+    flex-wrap: wrap;
+  }
+
+  .received-file-info {
+    min-width: calc(100% - 60px);
+  }
+
+  .received-file-status {
+    margin-left: 60px;
+  }
+
+  .decrypt-button {
+    margin-left: 60px;
+  }
+
+}
